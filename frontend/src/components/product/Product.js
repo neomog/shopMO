@@ -8,7 +8,7 @@ const Product = ({ product, col }) => {
                 <img
                     className="card-img-top mx-auto"
                     src={product.images[0].url}
-                />
+               alt="" />
                 <div className="card-body d-flex flex-column">
                     <h5 className="card-title">
                         <Link to={`/product/${product._id}`}>{product.name}</Link>

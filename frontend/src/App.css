@@ -5,7 +5,7 @@ body {
   height: 100%;
   margin: 0px;
   padding: 0px;
-  overflow-x: hidden;
+  overflow-x: hidden; 
  
 }
 *{
@@ -15,7 +15,7 @@ body {
 /* Scroll Bar */
 
 ::-webkit-scrollbar-track {
-  background-color: #f5f5f5;
+  background-color: #f5f5f562;
 }
 
 ::-webkit-scrollbar {
@@ -93,6 +93,63 @@ nav {
   color: black;
   font-weight: bold;
   font-size: 0.9rem;
+}
+
+/*category*/
+.category{
+  top:0;
+  height: 4rem;
+  left:0;
+  width:100%;
+  z-index: 0;
+}
+.category ul{
+  width: 100%;
+  display: flex;
+  margin-top: 4rem;
+  
+  margin-right:1rem;
+  margin-bottom:5rem;
+  justify-content: space-between;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  overflow-y: hidden;
+  scroll-snap-type:x mandatory;
+  
+}
+.category li{
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+  
+  color:#2e2e2e;
+  float: left;
+  border-radius: 20px;
+  padding:6px;
+  padding-left:1rem;
+  box-shadow:1px 5px 6px #0b141452;
+}
+.category li:hover{
+  background:#fa9d23a1;
+  color:aliceblue;
+}
+.category li:active{
+  background:#fa9d23a1;
+  color:aliceblue;
+  transform:scale(.6);
+  transition: all .3s ease;
+}
+.active{
+  background:#fa9d23a1;
+  color:rgb(248, 252, 255);
+}
+.category ::-webkit-scrollbar-thumb {
+  visibility: hidden;
+}
+.category ::-webkit-scrollbar{
+ visibility: hidden;
+}
+.category ::-webkit-scrollbar-track{
+  visibility: hidden
 }
 
 /* Home page */
@@ -517,7 +574,7 @@ footer {
   align-items: stretch;
   min-height: 100vh;
   font-weight: normal;
- 
+  overflow-y: hidden;
   margin-top: 0;
   height: 100%;
   left: 0;

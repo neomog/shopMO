@@ -19,6 +19,7 @@ const Home = ({ match }) => {
     const [currentPage, setCurrentPage] = useState(1)
     const [price, setPrice] = useState([1, 1000])
     const [category, setCategory] = useState('')
+    const [isActive, setActive] = useState(false)
     const [rating, setRating] = useState(0)
 
     const categories = [
@@ -42,6 +43,8 @@ const Home = ({ match }) => {
     const { loading, products, error, productsCount, resPerPage, filteredProductsCount } = useSelector(state => state.products)
 
     const keyword = match.params.keyword
+
+   
 
     useEffect(() => {
         if (error) {
@@ -67,8 +70,30 @@ const Home = ({ match }) => {
             {loading ? <Loader /> : (
                 <Fragment>
                     <MetaData title={'Buy Best Products Online'} />
-
+                        
+                                <div className="category">
+                                 <ul>
+                                                    {categories.map(category => (
+                                                        <li className ={isActive?"active":""}
+                                                            style={{
+                                                                cursor: 'pointer',
+                                                                listStyleType: 'none'
+                                                               
+                                                               
+                                                            }}
+                                                            key={category}
+                                                            onClick={() =>{setCategory(category);
+                                                                setActive(true)}}
+                                                        >
+                                                            {category}
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                        </div>
+                                    
+                                
                     <h1 id="products_heading">Latest Products</h1>
+                            
 
                     <section id="products" className="container mt-5">
                         <div className="row">
