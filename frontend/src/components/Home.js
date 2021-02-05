@@ -60,6 +60,13 @@ const Home = ({ match }) => {
         setCurrentPage(pageNumber)
     }
 
+    function setActiveBtn(){
+        setActive(prevState =>{
+           return {...prevState,isActive:true}
+        })
+        
+    }
+
     let count = productsCount;
     if (keyword) {
         count = filteredProductsCount
@@ -74,7 +81,7 @@ const Home = ({ match }) => {
                                 <div className="category">
                                  <ul>
                                                     {categories.map(category => (
-                                                        <li className ={isActive?"active":""}
+                                                        <li className ={isActive  && "active"}
                                                             style={{
                                                                 cursor: 'pointer',
                                                                 listStyleType: 'none'
@@ -83,7 +90,7 @@ const Home = ({ match }) => {
                                                             }}
                                                             key={category}
                                                             onClick={() =>{setCategory(category);
-                                                                setActive(true)}}
+                                                                setActiveBtn(true)}}
                                                         >
                                                             {category}
                                                         </li>

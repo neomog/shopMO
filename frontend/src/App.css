@@ -46,6 +46,7 @@ nav {
   display:none;
 }
 
+/*   Mobile phone View*/
 @media screen and (max-width:800px){
   .navbar {
     height:140px;
@@ -56,6 +57,16 @@ nav {
   }
   .navbar-brand {
     display:none;
+  }
+   .navbar form {
+    position:absolute;
+    width:90%;
+    top:-2.5rem;
+    justify-content:center;
+    right:0;
+  }
+  .dataTables_wrapper{
+    overflow: auto;
   }
   
 }
