@@ -6,6 +6,7 @@ import 'rc-slider/assets/index.css';
 import MetaData from './layout/MetaData'
 import Product from './product/Product'
 import Loader from './layout/Loader'
+import shuffleArray from './product/shuffleArray'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { useAlert } from 'react-alert';
@@ -13,6 +14,8 @@ import { getProducts } from '../actions/productActions'
 
 const { createSliderWithTooltip } = Slider;
 const Range = createSliderWithTooltip(Slider.Range)
+
+
 
 const Home = ({ match }) => {
 
@@ -44,6 +47,7 @@ const Home = ({ match }) => {
 
     const keyword = match.params.keyword
 
+    const recommendProduct = shuffleArray(products);
    
 
     useEffect(() => {
@@ -71,6 +75,7 @@ const Home = ({ match }) => {
     if (keyword) {
         count = filteredProductsCount
     }
+
 
     return (
         <Fragment>
@@ -184,15 +189,15 @@ const Home = ({ match }) => {
 
                                     <div className="col-6 col-md-9">
                                         <div className="row">
-                                            {products.map(product => (
+                                            {recommendProduct.map(product => (
                                                 <Product key={product._id} product={product} col={4} />
                                             ))}
                                         </div>
                                     </div>
                                 </Fragment>
                             ) : (
-                                    products.map(product => (
-                                        <Product key={product._id} product={product} col={3} />
+                                    recommendProduct.map(product => (
+                                      <Product key={product._id} product={product} col={3} />
                                     ))
                                 )}
 

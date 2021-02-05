@@ -711,3 +711,9 @@ ul.CTAs a {
   font-size: 0.8rem;
   color: grey;
 }
+/*   Related Items*/
+.related-items ul{
+  overflow-y: hidden;
+  overflow-x: auto;
+  float: right;
+}

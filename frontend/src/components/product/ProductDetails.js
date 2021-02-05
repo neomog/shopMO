@@ -4,6 +4,8 @@ import { Carousel } from 'react-bootstrap'
 import Loader from '../layout/Loader'
 import MetaData from '../layout/MetaData'
 import ListReviews from '../review/ListReviews'
+import shuffleArray from './shuffleArray'
+import Product from './Product'
 
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
@@ -20,6 +22,7 @@ const ProductDetails = ({ match }) => {
     const dispatch = useDispatch();
     const alert = useAlert();
 
+    const {  products} = useSelector(state => state.products)
     const { loading, error, product } = useSelector(state => state.productDetails)
     const { user } = useSelector(state => state.auth)
     const { error: reviewError, success } = useSelector(state => state.newReview)
@@ -107,6 +110,8 @@ const ProductDetails = ({ match }) => {
         }
     }
 
+    const recommendProduct = shuffleArray(products);
+
     const reviewHandler = () => {
         const formData = new FormData();
 
@@ -173,7 +178,7 @@ const ProductDetails = ({ match }) => {
                                 :
                                 <div className="alert alert-danger mt-5" type='alert'>Login to post your review.</div>
                             }
-
+                           
 
                             <div className="row mt-2 mb-5">
                                 <div className="rating w-50">
@@ -220,6 +225,23 @@ const ProductDetails = ({ match }) => {
                     {product.reviews && product.reviews.length > 0 && (
                         <ListReviews reviews={product.reviews} />
                     )}
+
+                            <div className="related-items">
+                               <h2> Related items </h2>
+                                    {product.category && product.reviews.length>0 && (
+                                        
+                                        <ul className="">
+                                            {recommendProduct.map(product => (
+                                               <li
+                                                style = {{
+                                                    cursor:'pointer',
+                                                    listStyleType:'none'
+                                                }}
+                                               ><Product key={product._id} product={product} col={4} /></li>
+                                            ))}
+                                        </ul>
+                                    )}
+                            </div>
 
                 </Fragment>
             )}
