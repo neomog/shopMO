@@ -3,6 +3,8 @@ import React, { Fragment, useState, useEffect } from 'react'
 import MetaData from '../layout/MetaData'
 import Compressor from 'compressorjs'
 
+
+
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { register, clearErrors } from '../../actions/userActions'
@@ -56,8 +58,8 @@ const Register = ({ history }) => {
             const file = e.target.files[0];
 
             const reader = new FileReader();
-
-            reader.onload = () => {
+           
+           reader.onload = () => {
                 if (reader.readyState === 2) {
                     setAvatarPreview(reader.result)
                     setAvatar(reader.result)
@@ -65,10 +67,32 @@ const Register = ({ history }) => {
                    
                 
             }
-
-           // const compressed = new Compressor(file, {quality:0.6})
             
-            reader.readAsDataURL(file);
+            
+            /*
+             new Compressor(file, {
+                    quality:0.7,
+                    maxWidth:1600,
+                    maxHeight:1600,
+                    success(result){
+                        reader.readAsDataURL(file);
+                        reader.onload = ()=>{
+                            let base64Data = reader.result;
+                            if (reader.readyState === 2) {
+                                setAvatarPreview(base64Data)
+                                setAvatar(base64Data)
+                            }
+                            document.getElementById('image-temp').value = base64Data;
+                        }
+                    },error(err){
+                        console.log(err.message)
+                    }
+        
+                })
+                */
+                reader.readAsDataURL(file);
+            
+          
 
             //error message
             if (file.size/1024/1024 > 1){
@@ -77,7 +101,6 @@ const Register = ({ history }) => {
                     wrongSize.style.display="none";
                 },5000)
                 wrongSize.style.display ="block";
-               
             }
            
 
@@ -153,9 +176,14 @@ const Register = ({ history }) => {
                                         name='avatar'
                                         className='custom-file-input'
                                         id='customFile'
-                                        accept="iamges/*"
+                                        accept="images/*"
                                         onChange={onChange}
                                         required
+                                    />
+                                    <input
+                                        type = 'hidden'
+                                        name='image'
+                                        id ='image-temp'
                                     />
                                     <label className='custom-file-label' htmlFor='customFile'>
                                         Choose Avatar
@@ -170,8 +198,10 @@ const Register = ({ history }) => {
                             type="submit"
                             className="btn btn-block py-3"
                             disabled={loading ? true : false}
+                        
                         >
-                            REGISTER
+                            {loading?(
+                            <box-icon color="#fff" animation="spin" name="loader"/>):(<span>REGISTER</span>)}
                         </button>
                     </form>
                 </div>

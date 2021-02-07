@@ -42,7 +42,7 @@ nav {
   top: 0;
   z-index: 100;
 }
-.back {
+.back{
   display:none;
 }
 
@@ -52,8 +52,8 @@ nav {
     height:140px;
     
   }
-  .back {
-    display:flex;
+  .navbar .back {
+    display: block;
   }
   .navbar-brand {
     display:none;
