@@ -19,6 +19,7 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
 
     const { name, email, password } = req.body;
 
+
     const user = await User.create({
         name,
         email,
@@ -82,7 +83,7 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
 
         await sendEmail({
             email: user.email,
-            subject: 'ShopIT Password Recovery',
+            subject: 'ShopMO Password Recovery',
             message
         })
 
@@ -232,7 +233,7 @@ exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
     const user = await User.findById(req.params.id);
 
     if (!user) {
-        return next(new ErrorHandler(`User does not found with id: ${req.params.id}`))
+        return next(new ErrorHandler(`User is not found with id: ${req.params.id}`))
     }
 
     res.status(200).json({

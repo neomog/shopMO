@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react'
 
 import MetaData from '../layout/MetaData'
+import Compressor from 'compressorjs'
 
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
@@ -16,7 +17,7 @@ const Register = ({ history }) => {
 
     const { name, email, password } = user;
 
-    const [avatar, setAvatar] = useState('')
+    const [avatar, setAvatar] = useState('/images/default_avatar.jpg')
     const [avatarPreview, setAvatarPreview] = useState('/images/default_avatar.jpg')
 
     const alert = useAlert();
@@ -52,6 +53,8 @@ const Register = ({ history }) => {
     const onChange = e => {
         if (e.target.name === 'avatar') {
 
+            const file = e.target.files[0];
+
             const reader = new FileReader();
 
             reader.onload = () => {
@@ -59,9 +62,24 @@ const Register = ({ history }) => {
                     setAvatarPreview(reader.result)
                     setAvatar(reader.result)
                 }
+                   
+                
             }
 
-            reader.readAsDataURL(e.target.files[0])
+           // const compressed = new Compressor(file, {quality:0.6})
+            
+            reader.readAsDataURL(file);
+
+            //error message
+            if (file.size/1024/1024 > 1){
+                const wrongSize = document.querySelector(".wrongSize");
+                setTimeout(() => {
+                    wrongSize.style.display="none";
+                },5000)
+                wrongSize.style.display ="block";
+               
+            }
+           
 
         } else {
             setUser({ ...user, [e.target.name]: e.target.value })
@@ -87,6 +105,7 @@ const Register = ({ history }) => {
                                 name='name'
                                 value={name}
                                 onChange={onChange}
+                                required={true}
                             />
                         </div>
 
@@ -99,6 +118,7 @@ const Register = ({ history }) => {
                                 name='email'
                                 value={email}
                                 onChange={onChange}
+                                required
                             />
                         </div>
 
@@ -111,6 +131,7 @@ const Register = ({ history }) => {
                                 name='password'
                                 value={password}
                                 onChange={onChange}
+                                required
                             />
                         </div>
 
@@ -134,12 +155,14 @@ const Register = ({ history }) => {
                                         id='customFile'
                                         accept="iamges/*"
                                         onChange={onChange}
+                                        required
                                     />
                                     <label className='custom-file-label' htmlFor='customFile'>
                                         Choose Avatar
                                     </label>
                                 </div>
                             </div>
+                             <p className='wrongSize' style ={{display:'none',color:'#a43242',size:'2px'}}>please use an image below 1MB</p>
                         </div>
 
                         <button
