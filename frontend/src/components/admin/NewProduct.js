@@ -18,6 +18,7 @@ const NewProduct = ({ history }) => {
     const [seller, setSeller] = useState('');
     const [images, setImages] = useState([]);
     const [imagesPreview, setImagesPreview] = useState([])
+    const [imageKind, setImageDes ] = useState('');
 
     const categories = [
         'Electronics',
@@ -66,7 +67,8 @@ const NewProduct = ({ history }) => {
         formData.set('seller', seller);
 
         images.forEach(image => {
-            formData.append('images', image)
+            formData.append('images', image);
+            formData.set('kind', imageKind);
         })
 
         dispatch(newProduct(formData))
@@ -86,6 +88,7 @@ const NewProduct = ({ history }) => {
                 if (reader.readyState === 2) {
                     setImagesPreview(oldArray => [...oldArray, reader.result])
                     setImages(oldArray => [...oldArray, reader.result])
+                   
                 }
             }
 
@@ -93,6 +96,16 @@ const NewProduct = ({ history }) => {
         })
     }
 
+    const imageDescription = ()=>{
+        let describe= document.getElementById('imageDes');
+
+        describe.style.display="block"
+        setTimeout(() => {
+        describe.style.display="none"
+        },10000)
+
+        console.log(imageKind)
+    }
 
     return (
         <Fragment>
@@ -184,8 +197,19 @@ const NewProduct = ({ history }) => {
                                     </div>
 
                                     {imagesPreview.map(img => (
-                                        <img src={img} key={img} alt="Images Preview" className="mt-3 mr-2" width="55" height="52" />
+                                        <img src={img} key={img} 
+                                         alt="Images Preview" 
+                                         className="mt-3 mr-2" 
+                                         width="55" height="52"
+                                         onClick={imageDescription} />
+                                       
                                     ))}
+                                    
+                                    <input type="text" id="imageDes" 
+                                         className="form-control"
+                                         placeholder="Please input product description"
+                                         style={{display:'none'}}
+                                         onChange={e =>setImageDes(e.target.value)}/>
 
                                 </div>
 

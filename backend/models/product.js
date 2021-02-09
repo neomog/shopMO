@@ -23,6 +23,10 @@ const productSchema = new mongoose.Schema({
     },
     images: [
         {
+            kind: {
+                type: String,
+                required: false
+            },
             public_id: {
                 type: String,
                 required: true

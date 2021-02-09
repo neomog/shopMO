@@ -58,24 +58,14 @@ const Register = ({ history }) => {
             const file = e.target.files[0];
 
             const reader = new FileReader();
-           
-           reader.onload = () => {
-                if (reader.readyState === 2) {
-                    setAvatarPreview(reader.result)
-                    setAvatar(reader.result)
-                }
-                   
-                
-            }
             
             
-            /*
              new Compressor(file, {
-                    quality:0.7,
-                    maxWidth:1600,
-                    maxHeight:1600,
+                    quality:0.8,
+                    maxWidth:150,
+                    maxHeight:150,
                     success(result){
-                        reader.readAsDataURL(file);
+                        reader.readAsDataURL(result);
                         reader.onload = ()=>{
                             let base64Data = reader.result;
                             if (reader.readyState === 2) {
@@ -89,8 +79,7 @@ const Register = ({ history }) => {
                     }
         
                 })
-                */
-                reader.readAsDataURL(file);
+                
             
           
 
