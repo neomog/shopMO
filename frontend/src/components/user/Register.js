@@ -61,7 +61,7 @@ const Register = ({ history }) => {
             
             
              new Compressor(file, {
-                    quality:0.8,
+                    quality:0.9,
                     maxWidth:150,
                     maxHeight:150,
                     success(result){

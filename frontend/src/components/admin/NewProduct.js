@@ -102,7 +102,7 @@ const NewProduct = ({ history }) => {
         describe.style.display="block"
         setTimeout(() => {
         describe.style.display="none"
-        },10000)
+        },20000)
 
         console.log(imageKind)
     }

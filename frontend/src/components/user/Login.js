@@ -31,7 +31,7 @@ const Login = ({ history, location }) => {
             dispatch(clearErrors());
         }
 
-    }, [dispatch, alert, isAuthenticated, error, history])
+    }, [dispatch,redirect, alert, isAuthenticated, error, history])
 
     const submitHandler = (e) => {
         e.preventDefault();
