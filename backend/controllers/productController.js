@@ -40,7 +40,7 @@ exports.newProduct = catchAsyncErrors(async (req, res, next) => {
 })
 
 
-// Get all products   =>   /api/v1/products?keyword=apple
+// Get all products   =>   /api/v1/products?keyword=''
 exports.getProducts = catchAsyncErrors(async (req, res, next) => {
 
     const resPerPage = 4;
@@ -76,6 +76,26 @@ exports.getAdminProducts = catchAsyncErrors(async (req, res, next) => {
         success: true,
         products
     })
+
+})
+
+// Get all products out of stock  =>  /api/v1/admin/soldOut
+exports.getSoldOutProducts = catchAsyncErrors(async (req, res, next) => {
+
+    const products = await Product.find();
+
+    let soldOut =[]
+    products.forEach(product => {
+
+        if (product.stock === 0){
+                soldOut.push(product);
+            }
+        })
+  
+        res.status(200).json({
+            success: true,
+            soldOut
+        })
 
 })
 
