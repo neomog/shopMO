@@ -35,7 +35,7 @@ const Header = () => {
                     </div>
                 </div>
                
-                 <Link to='/'> <box-icon class="back" color="#fff" name="arrow-back"></box-icon></Link>
+                 <Link to='/' style={{textDecoration: 'none',color: 'white'}}> <i className="back fa fa-arrow-left"></i></Link>
                
                 <div className="col-12 col-md-6 mt-2 mt-md-0">
                     <Route render={({ history }) => <Search history={history} />} />

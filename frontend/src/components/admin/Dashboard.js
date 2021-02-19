@@ -108,6 +108,12 @@ const Dashboard = () => {
                                         <div className="card-body">
                                             <div className="text-center card-font-size">Out of Stock<br /> <b>{outOfStock}</b></div>
                                         </div>
+                                        <Link className="card-footer text-white clearfix small z-1" to="/admin/soldout">
+                                            <span className="float-left">View Details</span>
+                                            <span className="float-right">
+                                                <i className="fa fa-angle-right"></i>
+                                            </span>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>

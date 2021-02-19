@@ -95,7 +95,9 @@ const Home = ({ match }) => {
                                                             }}
                                                             key={category}
                                                             onClick={() =>{setCategory(category);
-                                                                setActiveBtn(true)}}
+                                                                setActiveBtn(true);
+                                                                
+                                                            }}
                                                         >
                                                             {category}
                                                         </li>

@@ -9,6 +9,9 @@ import {
     NEW_PRODUCT_SUCCESS,
     NEW_PRODUCT_RESET,
     NEW_PRODUCT_FAIL,
+    SOLDOUT_PRODUCTS_REQUEST,
+    SOLDOUT_PRODUCTS_SUCCESS,
+    SOLDOUT_PRODUCTS_FAIL,
     DELETE_PRODUCT_REQUEST,
     DELETE_PRODUCT_SUCCESS,
     DELETE_PRODUCT_RESET,
@@ -39,6 +42,7 @@ export const productsReducer = (state = { products: [] }, action) => {
     switch (action.type) {
         case ALL_PRODUCTS_REQUEST:
         case ADMIN_PRODUCTS_REQUEST:
+        case SOLDOUT_PRODUCTS_REQUEST:
             return {
                 loading: true,
                 products: []
@@ -54,6 +58,7 @@ export const productsReducer = (state = { products: [] }, action) => {
             }
 
         case ADMIN_PRODUCTS_SUCCESS:
+        case SOLDOUT_PRODUCTS_SUCCESS:
             return {
                 loading: false,
                 products: action.payload
@@ -61,6 +66,7 @@ export const productsReducer = (state = { products: [] }, action) => {
 
         case ALL_PRODUCTS_FAIL:
         case ADMIN_PRODUCTS_FAIL:
+        case SOLDOUT_PRODUCTS_FAIL:
             return {
                 loading: false,
                 error: action.payload

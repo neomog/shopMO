@@ -10,6 +10,9 @@ import {
     NEW_PRODUCT_REQUEST,
     NEW_PRODUCT_SUCCESS,
     NEW_PRODUCT_FAIL,
+    SOLDOUT_PRODUCTS_REQUEST,
+    SOLDOUT_PRODUCTS_SUCCESS,
+    SOLDOUT_PRODUCTS_FAIL,
     DELETE_PRODUCT_REQUEST,
     DELETE_PRODUCT_SUCCESS,
     DELETE_PRODUCT_FAIL,
@@ -200,6 +203,30 @@ export const getAdminProducts = () => async (dispatch) => {
         })
     }
 }
+
+//Get SoldOut Products
+
+export const getSoldOutProducts = () => async (dispatch) => {
+    try {
+
+        dispatch({ type: SOLDOUT_PRODUCTS_REQUEST })
+
+        const { data } = await axios.get(`/api/v1/admin/soldout`)
+
+        dispatch({
+            type: SOLDOUT_PRODUCTS_SUCCESS,
+            payload: data.soldOut
+        })
+
+    } catch (error) {
+
+        dispatch({
+            type: SOLDOUT_PRODUCTS_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
+
 
 // Get product reviews
 export const getProductReviews = (id) => async (dispatch) => {

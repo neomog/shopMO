@@ -153,6 +153,7 @@ nav {
   background:#fa9d23a1;
   color:rgb(248, 252, 255);
 }
+
 .category ::-webkit-scrollbar-thumb {
   visibility: hidden;
 }

@@ -19,6 +19,7 @@ const NewProduct = ({ history }) => {
     const [images, setImages] = useState([]);
     const [imagesPreview, setImagesPreview] = useState([])
     const [imageKind, setImageDes ] = useState('');
+    const [imageName, setImageName] = useState(imageKind)
 
     const categories = [
         'Electronics',
@@ -95,7 +96,10 @@ const NewProduct = ({ history }) => {
             reader.readAsDataURL(file)
         })
     }
-
+    const addDescription = imageName =>{
+        setImageName([...imageKind,imageName ])
+        setImageDes('')
+    } 
     const imageDescription = ()=>{
         let describe= document.getElementById('imageDes');
 
@@ -104,7 +108,12 @@ const NewProduct = ({ history }) => {
         describe.style.display="none"
         },20000)
 
+       addDescription(imageName);
+
         console.log(imageKind)
+    }
+    const ImageName = (props)=>{
+        return <div>{props.imageName}</div>
     }
 
     return (
@@ -201,9 +210,11 @@ const NewProduct = ({ history }) => {
                                          alt="Images Preview" 
                                          className="mt-3 mr-2" 
                                          width="55" height="52"
-                                         onClick={imageDescription} />
+                                         onClick={imageDescription}
+                                         />
                                        
                                     ))}
+                                     <ImageName props={imageName}/>
                                     
                                     <input type="text" id="imageDes" 
                                          className="form-control"
