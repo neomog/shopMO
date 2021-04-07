@@ -18,8 +18,8 @@ const NewProduct = ({ history }) => {
     const [seller, setSeller] = useState('');
     const [images, setImages] = useState([]);
     const [imagesPreview, setImagesPreview] = useState([])
-    const [imageKind, setImageDes ] = useState('');
-    const [imageName, setImageName] = useState(imageKind)
+    const [imageKind, setImageDes ] = useState([]);
+    const [imageName, setImageName] = useState([...imageKind,''])
 
     const categories = [
         'Electronics',
@@ -113,7 +113,10 @@ const NewProduct = ({ history }) => {
         console.log(imageKind)
     }
     const ImageName = (props)=>{
-        return <div>{props.imageName}</div>
+       
+            return (<div>{props.imageName}</div>)
+       
+       
     }
 
     return (
@@ -204,18 +207,21 @@ const NewProduct = ({ history }) => {
                                             Choose Images
                                      </label>
                                     </div>
-
+                                    
                                     {imagesPreview.map(img => (
+                                        
                                         <img src={img} key={img} 
                                          alt="Images Preview" 
                                          className="mt-3 mr-2" 
                                          width="55" height="52"
                                          onClick={imageDescription}
                                          />
+                                         
                                        
                                     ))}
-                                     <ImageName props={imageName}/>
+                                    <ImageName imageName={imageKind}/>
                                     
+
                                     <input type="text" id="imageDes" 
                                          className="form-control"
                                          placeholder="Please input product description"

@@ -97,7 +97,7 @@ const SoldOutList = ({ history }) => {
 
     return (
         <Fragment>
-            <MetaData title={'All Products'} />
+            <MetaData title={'Products out of stock'} />
             <div className="row">
                 <div className="col-12 col-md-2">
                     <Sidebar />

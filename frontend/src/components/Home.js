@@ -66,7 +66,7 @@ const Home = ({ match }) => {
 
     function setActiveBtn(){
         setActive(prevState =>{
-           return {...prevState,isActive:true}
+           return {isActive:true}
         })
         
     }
@@ -89,13 +89,14 @@ const Home = ({ match }) => {
                                                         <li className ={isActive  && "active"}
                                                             style={{
                                                                 cursor: 'pointer',
-                                                                listStyleType: 'none'
+                                                                listStyleType: 'none',
+                                                                
                                                                
                                                                
                                                             }}
                                                             key={category}
                                                             onClick={() =>{setCategory(category);
-                                                                setActiveBtn(true);
+                                                                setActiveBtn();
                                                                 
                                                             }}
                                                         >
