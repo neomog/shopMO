@@ -1,6 +1,6 @@
-### ShopMO E-commerce App
+### ShopMO E-commerce App (v1)
 
-> Complete E-commerce site built with Node.js, React, Redux, Express, MongoDB
+> ShopMO shopping system runs on Node.js, React, Redux, Express, MongoDB
 
 
 ### Install Dependencies (Frontend)
