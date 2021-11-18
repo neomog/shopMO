@@ -17,7 +17,6 @@ const {
 
 } = require('../controllers/authController');
 
-
 const { isAuthenticatedUser, authorizeRoles } = require('../middlewares/auth')
 
 router.route('/register').post(registerUser);

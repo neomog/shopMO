@@ -78,7 +78,7 @@ const ProductDetails = ({ match }) => {
         stars.forEach((star, index) => {
             star.starValue = index + 1;
 
-            ['click', 'mouseover', 'mouseout'].forEach(function (e) {
+            ['click', 'mouseover', 'mouseout','touchmove'].forEach(function (e) {
                 star.addEventListener(e, showRatings);
             })
         })
@@ -151,7 +151,7 @@ const ProductDetails = ({ match }) => {
 
                             <hr />
 
-                            <p id="product_price">${product.price}</p>
+                            <p id="product_price">M{(product.price*20).toFixed(2)}</p>
                             <div className="stockCounter d-inline">
                                 <span className="btn btn-danger minus" onClick={decreaseQty}>-</span>
 

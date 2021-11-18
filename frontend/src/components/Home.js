@@ -7,6 +7,7 @@ import MetaData from './layout/MetaData'
 import Product from './product/Product'
 import Loader from './layout/Loader'
 import shuffleArray from './product/shuffleArray'
+import Display from './layout/Slider'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { useAlert } from 'react-alert';
@@ -66,7 +67,7 @@ const Home = ({ match }) => {
 
     function setActiveBtn(){
         setActive(prevState =>{
-           return {isActive:true}
+           return {isActive:true,...prevState}
         })
         
     }
@@ -82,7 +83,7 @@ const Home = ({ match }) => {
             {loading ? <Loader /> : (
                 <Fragment>
                     <MetaData title={'Buy Best Products Online'} />
-                        
+                                <Display/>
                                 <div className="category">
                                  <ul>
                                                     {categories.map(category => (
