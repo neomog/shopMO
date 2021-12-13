@@ -10,11 +10,12 @@ const ConfirmOrder = ({ history }) => {
 
     const { cartItems, shippingInfo } = useSelector(state => state.cart)
     const { user } = useSelector(state => state.auth)
+    const rate = 20;
 
     // Calculate Order Prices
     const itemsPrice = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0)
-    const shippingPrice = itemsPrice > 200 ? 0 : 25
-    const taxPrice = Number((0.05 * itemsPrice).toFixed(2))
+    const shippingPrice = itemsPrice > 200 ? 0 : 0.75
+    const taxPrice = Number((0.007 * itemsPrice).toFixed(2))
     const totalPrice = (itemsPrice + shippingPrice + taxPrice).toFixed(2)
 
     const processToPayment = () => {
@@ -62,7 +63,7 @@ const ConfirmOrder = ({ history }) => {
 
 
                                     <div className="col-4 col-lg-4 mt-4 mt-lg-0">
-                                        <p>{item.quantity} x ${item.price} = <b>${(item.quantity * item.price).toFixed(2)}</b></p>
+                                        <p>{item.quantity} x M {(item.price* rate).toFixed(2)} = <b>M {(item.quantity * item.price * rate).toFixed(2)}</b></p>
                                     </div>
 
                                 </div>
@@ -79,13 +80,13 @@ const ConfirmOrder = ({ history }) => {
                     <div id="order_summary">
                         <h4>Order Summary</h4>
                         <hr />
-                        <p>Subtotal:  <span className="order-summary-values">${itemsPrice}</span></p>
-                        <p>Shipping: <span className="order-summary-values">${shippingPrice}</span></p>
-                        <p>Tax:  <span className="order-summary-values">${taxPrice}</span></p>
+                        <p>Subtotal:  <span className="order-summary-values">M {itemsPrice * rate}</span></p>
+                        <p>Shipping: <span className="order-summary-values">M {shippingPrice * rate}</span></p>
+                        <p>Tax:  <span className="order-summary-values">M {taxPrice * rate}</span></p>
 
                         <hr />
 
-                        <p>Total: <span className="order-summary-values">${totalPrice}</span></p>
+                        <p>Total: <span className="order-summary-values">M {(totalPrice * rate).toFixed(2) }</span></p>
 
                         <hr />
                         <button id="checkout_btn" className="btn btn-primary btn-block" onClick={processToPayment}>Proceed to Payment</button>

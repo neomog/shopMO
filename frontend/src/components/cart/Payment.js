@@ -2,6 +2,7 @@ import React, { Fragment, useEffect } from 'react'
 
 import MetaData from '../layout/MetaData'
 import CheckoutSteps from './CheckoutSteps'
+import PayPal from './Paypal'
 
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
@@ -32,6 +33,8 @@ const Payment = ({ history }) => {
     const { user, loading } = useSelector(state => state.auth)
     const { cartItems, shippingInfo } = useSelector(state => state.cart);
     const { error } = useSelector(state => state.newOrder)
+    const [checkout, setCheckout] = React.useState(false)
+    const [pay, setPay] = React.useState(false)
 
     useEffect(() => {
 
@@ -126,11 +129,37 @@ const Payment = ({ history }) => {
             <MetaData title={'Payment'} />
 
             <CheckoutSteps shipping confirmOrder payment />
-
+            
             <div className="row wrapper">
+            {(checkout === true) 
+                ? <div className="payment-div">
+                    <PayPal 
+                    price={orderInfo.totalPrice}
+                    history={history}
+                    order={order}
+                 
+                    />
+                </div> 
+
+                :<div>
+                    <h1 >Payment methods</h1>
+                    <button onClick={() => {setCheckout(true)}} id="view_btn" className="btn btn-block py-3">Use credit/debit card {` - M${orderInfo && (orderInfo.totalPrice*20).toFixed(2)}`}</button>
+                </div>
+            }
+        </div>
+            
+            <div className="row wrapper">
+                { (pay === true)?
                 <div className="col-10 col-lg-5">
                     <form className="shadow-lg" onSubmit={submitHandler}>
                         <h1 className="mb-4">Card Info</h1>
+                       <i className="fa fa-info-circle md-5"> For mpesa, eco-cash or cash on delivery use shopmo virtual card to checkout
+                           <ol> 
+                               <li>Card no: 4242 4242 4242 4242</li>
+                                <li>Expiry: 12/26</li>
+                                <li>CVC: 765</li>
+                           </ol>
+                       </i>
                         <div className="form-group">
                             <label htmlFor="card_num_field">Card Number</label>
                             <CardNumberElement
@@ -167,11 +196,16 @@ const Payment = ({ history }) => {
                             type="submit"
                             className="btn btn-block py-3"
                         >
-                           Pay {` - $${orderInfo && orderInfo.totalPrice}`}
+                           Pay {` - M${orderInfo && (orderInfo.totalPrice*20).toFixed(2)}`}
                         </button>
 
                     </form>
                 </div>
+                :
+                <div>
+                    <button onClick={() => {setPay(true)}} id="view_btn" className="btn btn-block py-3">mpesa/eco-cash/cash on delivery {` - M${orderInfo && (orderInfo.totalPrice*20).toFixed(2)}`}</button>
+                </div>
+    }
             </div>
 
         </Fragment>

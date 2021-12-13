@@ -1,7 +1,10 @@
 const Order = require('../models/order');
 const Product = require('../models/product');
+const User = require('../models/user');
 
 const ErrorHandler = require('../utils/errorHandler');
+const sendSms = require('../utils/sendSMS');
+const sendEmail = require('../utils/sendEmail');
 const catchAsyncErrors = require('../middlewares/catchAsyncErrors');
 
 // Create a new order   =>  /api/v1/order/new
@@ -82,9 +85,27 @@ exports.allOrders = catchAsyncErrors(async (req, res, next) => {
 exports.updateOrder = catchAsyncErrors(async (req, res, next) => {
     const order = await Order.findById(req.params.id)
 
-    if (order.orderStatus === 'Delivered') {
-        return next(new ErrorHandler('You have already delivered this order', 400))
+    const message = `Your order has been processed. Your order ID is ${order._id}.
+ Please check your orders at https://shop-mo.herokuapp.com/order/me for more details.`;
+    
+
+    
+       // sendSms(/*order.shippingInfo.phone, `Your order ${order.orderNumber} has been delivered.`*/)
+        try {
+
+            await sendEmail({
+                email: 'user@message.com',
+                subject: 'shop-mo.app - Order Processed',
+                message
+            })
+            console.log('Email sent')
+        } catch (err) {console.log(err)}
+
+        if (order.orderStatus === 'Delivered') {
+
+        return next(new ErrorHandler('Order already delivered', 400))
     }
+    
 
     order.orderItems.forEach(async item => {
         await updateStock(item.product, item.quantity)

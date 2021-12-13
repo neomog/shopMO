@@ -1,12 +1,13 @@
 # Node server
-FROM node:15 as node-server
-WORKDIR /backend/app
+FROM node:16 as node-server
+WORKDIR vince095\shopit\backend\app
 COPY . /backend/app
+COPY . /frontend/app
+COPY package*.json ./
 RUN rm -f package-lock.json \
     ;rm -rf node_modules \
     ;npm install --production --silent && mv node_modules ../
-COPY server.js .
-COPY /server backend/server
+COPY . .
 
 # Final image
 # CMD ["node", "server.js"]
