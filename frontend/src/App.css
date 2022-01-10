@@ -52,6 +52,9 @@ nav {
     height:140px;
     
   }
+  #mobi-hide{
+    display:none;
+  }
   .navbar .back {
     display: block;
   }

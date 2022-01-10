@@ -116,7 +116,7 @@ const Home = ({ match }) => {
 
                             {keyword ? (
                                 <Fragment>
-                                    <div className="col-6 col-md-3 mt-5 mb-5">
+                                    <div className="col-6 col-md-3 mt-5 mb-5" id="mobi-hide">
                                         <div className="px-5">
                                             <Range
                                                 marks={{
