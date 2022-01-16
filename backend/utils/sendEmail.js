@@ -12,7 +12,7 @@ const sendEmail = async options => {
         debug: true,
         secureConnection: false,
         auth: {
-            user: process.env.SMTP_EMAIL,
+            user: process.env.SMTP_FROM_EMAIL,
             pass: process.env.SMTP_PASSWORD
         }
     });
