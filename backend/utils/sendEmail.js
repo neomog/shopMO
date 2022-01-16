@@ -2,8 +2,15 @@ const nodemailer = require('nodemailer');
 
 const sendEmail = async options => {
     const transporter = nodemailer.createTransport({
+        service: 'Godaddy',
         host: process.env.SMTP_HOST,
         port: process.env.SMTP_PORT,
+        tls: {
+            ciphers: 'SSLv3'
+        },
+        requireTLS: true,
+        debug: true,
+        secureConnection: false,
         auth: {
             user: process.env.SMTP_EMAIL,
             pass: process.env.SMTP_PASSWORD

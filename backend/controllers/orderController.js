@@ -84,9 +84,10 @@ exports.allOrders = catchAsyncErrors(async (req, res, next) => {
 // Update / Process order - ADMIN  =>   /api/v1/admin/order/:id
 exports.updateOrder = catchAsyncErrors(async (req, res, next) => {
     const order = await Order.findById(req.params.id)
+    const user  = await User.findById(order.user)
 
     const message = `Your order has been processed. Your order ID is ${order._id}.
- Please check your orders at https://shop-mo.herokuapp.com/order/me for more details.`;
+ Please check your orders at https://www.shop-mo.app/order/me for more details.`;
     
 
     
@@ -94,7 +95,7 @@ exports.updateOrder = catchAsyncErrors(async (req, res, next) => {
         try {
 
             await sendEmail({
-                email: 'user@message.com',
+                email: user.email,
                 subject: 'shop-mo.app - Order Processed',
                 message
             })
