@@ -52,7 +52,7 @@ const Shipping = ({ history }) => {
                         </div>
 
                         <div className="form-group">
-                            <label htmlFor="city_field">City</label>
+                            <label htmlFor="city_field">City/town/Village</label>
                             <input
                                 type="text"
                                 id="city_field"
