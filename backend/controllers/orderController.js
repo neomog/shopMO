@@ -31,6 +31,17 @@ exports.newOrder = catchAsyncErrors(async (req, res, next) => {
         paidAt: Date.now(),
         user: req.user._id
     })
+    if(order){
+        try {
+
+            await sendEmail({
+                email: req.user.email,
+                subject: 'shop-mo.app - Order Placed',
+                message: order.orderItems.map(item => `${item.product.name} x ${item.quantity}`).join('\n')
+            })
+            console.log('Email sent')
+        } catch (err) {console.log(err)}
+    }
 
     res.status(200).json({
         success: true,

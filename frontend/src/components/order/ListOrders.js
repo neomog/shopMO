@@ -11,6 +11,7 @@ import { myOrders, clearErrors } from '../../actions/orderActions'
 
 const ListOrders = () => {
 
+    const rate = 20;
     const alert = useAlert();
     const dispatch = useDispatch();
 
@@ -61,7 +62,7 @@ const ListOrders = () => {
             data.rows.push({
                 id: order._id,
                 numOfItems: order.orderItems.length,
-                amount: `$${order.totalPrice}`,
+                amount: `M ${order.totalPrice * rate}`,
                 status: order.orderStatus && String(order.orderStatus).includes('Delivered')
                     ? <p style={{ color: 'green' }}>{order.orderStatus}</p>
                     : <p style={{ color: 'red' }}>{order.orderStatus}</p>,
