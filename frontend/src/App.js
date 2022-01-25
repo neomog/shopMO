@@ -39,6 +39,8 @@ import UpdateUser from './components/admin/UpdateUser'
 import ProductReviews from './components/admin/ProductReviews'
 import SoldOutList from './components/admin/SoldOutList'
 
+import Privacy from './components/layout/Privacy'
+
 
 import ProtectedRoute from './components/route/ProtectedRoute'
 import { loadUser } from './actions/userActions'
@@ -88,6 +90,8 @@ function App() {
               <ProtectedRoute path="/payment" component={Payment} />
             </Elements>
           }
+
+          <Route path="/privacy" component={Privacy}/>
 
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
