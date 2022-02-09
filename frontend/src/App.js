@@ -38,6 +38,8 @@ import UsersList from './components/admin/UsersList'
 import UpdateUser from './components/admin/UpdateUser'
 import ProductReviews from './components/admin/ProductReviews'
 import SoldOutList from './components/admin/SoldOutList'
+import NewSeller from './components/admin/NewSeller'
+import Sellers from './components/admin/Seller'
 
 import Privacy from './components/layout/Privacy'
 
@@ -106,6 +108,8 @@ function App() {
         </div>
 
         <ProtectedRoute path="/dashboard" isAdmin={true} component={Dashboard} exact />
+        <ProtectedRoute path ="/admin/seller" isAdmin={true} component={NewSeller} exact />
+        <ProtectedRoute path ="/admin/sellers" isAdmin={true} component={Sellers} exact />
         <ProtectedRoute path="/admin/products" isAdmin={true} component={ProductsList} exact />
         <ProtectedRoute path="/admin/product" isAdmin={true} component={NewProduct} exact />
         <ProtectedRoute path="/admin/product/:id" isAdmin={true} component={UpdateProduct} exact />

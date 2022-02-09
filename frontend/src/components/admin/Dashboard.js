@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getAdminProducts } from '../../actions/productActions'
 import { allOrders } from '../../actions/orderActions'
 import { allUsers } from '../../actions/userActions'
+import { getAllSellers} from '../../actions/sellerActions'
 
 const Dashboard = () => {
 
@@ -18,6 +19,7 @@ const Dashboard = () => {
     const { products } = useSelector(state => state.products)
     const { users } = useSelector(state => state.allUsers)
     const { orders, totalAmount, loading } = useSelector(state => state.allOrders)
+    const { sellers } = useSelector(state => state.allSellers)
 
     const rate = 20;
     let outOfStock = 0;
@@ -31,6 +33,7 @@ const Dashboard = () => {
         dispatch(getAdminProducts())
         dispatch(allOrders())
         dispatch(allUsers())
+        dispatch(getAllSellers())
     }, [dispatch])
 
     return (
@@ -110,6 +113,20 @@ const Dashboard = () => {
                                             <div className="text-center card-font-size">Out of Stock<br /> <b>{outOfStock}</b></div>
                                         </div>
                                         <Link className="card-footer text-white clearfix small z-1" to="/admin/soldout">
+                                            <span className="float-left">View Details</span>
+                                            <span className="float-right">
+                                                <i className="fa fa-angle-right"></i>
+                                            </span>
+                                        </Link>
+                                    </div>
+                                </div>
+
+                                <div className="col-xl-3 col-sm-6 mb-3">
+                                    <div className="card text-white bg-secondary o-hidden h-100">
+                                        <div className="card-body">
+                                            <div className="text-center card-font-size">Sellers<br /> <b>{ sellers && sellers.length}</b></div>
+                                        </div>
+                                        <Link className="card-footer text-white clearfix small z-1" to="/admin/sellers">
                                             <span className="float-left">View Details</span>
                                             <span className="float-right">
                                                 <i className="fa fa-angle-right"></i>
