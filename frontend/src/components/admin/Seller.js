@@ -60,8 +60,8 @@ const Seller = ({ history }) => {
                     sort: 'asc'
                 },
                 {
-                    label: 'location',
-                    field: 'Location',
+                    label: 'Location',
+                    field: 'location',
                     sort: 'asc'
                 },
                 {
@@ -89,7 +89,7 @@ const Seller = ({ history }) => {
                 phone: seller.phone,
                 description: seller.description,
                 category: seller.category,
-                location: seller.location,
+                location: seller.address,
                 actions: <Fragment>
                     {/* <Link to={`/admin/seller/${seller._id}`} className="btn btn-primary py-1 px-2">
                         <i className="fa fa-pencil"></i>
