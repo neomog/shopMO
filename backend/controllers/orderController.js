@@ -36,8 +36,8 @@ exports.newOrder = catchAsyncErrors(async (req, res, next) => {
 
             await sendEmail({
                 email: req.user.email,
-                subject: 'shop-mo.app - Order Placed',
-                message: order.orderItems.map(item => `${item.product.name} x ${item.quantity}`).join('\n')
+                subject: 'shop-mo.app - Order Placed successfully',
+                message: order.orderItems.map(item => `${item.name} x ${item.quantity} = price: M ${item.price *20} `).join('\n')
             })
             console.log('Email sent')
         } catch (err) {console.log(err)}
@@ -102,19 +102,19 @@ exports.updateOrder = catchAsyncErrors(async (req, res, next) => {
     
 
     
-       // sendSms(/*order.shippingInfo.phone, `Your order ${order.orderNumber} has been delivered.`*/)
+     
+
+        if (order.orderStatus === 'Delivered') {
+              // sendSms(/*order.shippingInfo.phone, `Your order ${order.orderNumber} has been delivered.`*/)
         try {
 
             await sendEmail({
-                email: user.email,
-                subject: 'shop-mo.app - Order Processed',
+                email: req.user.email,
+                subject: 'shop-mo.app - Order Processed successfully',
                 message
             })
             console.log('Email sent')
         } catch (err) {console.log(err)}
-
-        if (order.orderStatus === 'Delivered') {
-
         return next(new ErrorHandler('Order already delivered', 400))
     }
     
