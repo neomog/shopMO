@@ -3,6 +3,8 @@ import React, { Fragment, useEffect } from 'react'
 import MetaData from '../layout/MetaData'
 import CheckoutSteps from './CheckoutSteps'
 import PayPal from './Paypal'
+import Cards from 'react-credit-cards'
+import 'react-credit-cards/es/styles-compiled.css'
 
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
@@ -124,6 +126,11 @@ const Payment = ({ history }) => {
         }
     }
 
+    const virtualCards = ['4242424242424242', '4000056655665556', '4000056655665572', '5200828282828210', '6011981111111113','2227200000000009']
+    const [data , setData] = React.useState({cvc: "654"});
+    const handleInputChange = (e) => 
+        setData({...data, [e.target.name]: e.target.value});
+
     return (
         <Fragment>
             <MetaData title={'Payment'} />
@@ -154,12 +161,14 @@ const Payment = ({ history }) => {
                     <form className="shadow-lg" onSubmit={submitHandler}>
                         <h1 className="mb-4">Card Info</h1>
                        <i className="fa fa-info-circle md-5"> For mpesa, eco-cash or cash on delivery use shopmo virtual card to checkout
-                           <ol> 
-                               <li>Card no: 4242 4242 4242 4242</li>
-                                <li>Expiry: 12/26</li>
-                                <li>CVC: 765</li>
-                           </ol>
+                         
                        </i>
+                       <Cards
+                            cvc={data.cvc}
+                            expiry={'12/26'}
+                            name={user.name}
+                            number={virtualCards[Math.floor(Math.random() * virtualCards.length)]}
+                       />
                         <div className="form-group">
                             <label htmlFor="card_num_field">Card Number</label>
                             <CardNumberElement
@@ -184,9 +193,11 @@ const Payment = ({ history }) => {
                             <label htmlFor="card_cvc_field">Card CVC</label>
                             <CardCvcElement
                                 type="text"
+                                name="cvc"
                                 id="card_cvc_field"
                                 className="form-control"
                                 options={options}
+                                onChange={handleInputChange}
                             />
                         </div>
 
