@@ -1,6 +1,6 @@
 # Node server
 FROM node:16 as node-server
-WORKDIR vince095\shopit\backend\app
+WORKDIR /backend/app
 COPY . /backend/app
 COPY . /frontend/app
 COPY package*.json ./
@@ -12,4 +12,3 @@ COPY . .
 # Final image
 # CMD ["node", "server.js"]
 CMD ["npm", "prod"]
-

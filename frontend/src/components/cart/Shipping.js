@@ -99,7 +99,7 @@ const Shipping = ({ history }) => {
 
                                 {countriesList.map(country => (
                                     <option key={country.name} value={country.name}>
-                                        {country.name}
+                                      {country.name}
                                     </option>
                                 ))}
 

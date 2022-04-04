@@ -111,7 +111,7 @@ exports.updateOrder = catchAsyncErrors(async (req, res, next) => {
             await sendEmail({
                 email: req.user.email,
                 subject: 'shop-mo.app - Order Processed successfully',
-                message
+                message: message
             })
             console.log('Email sent')
         } catch (err) {console.log(err)}

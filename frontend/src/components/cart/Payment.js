@@ -163,12 +163,16 @@ const Payment = ({ history }) => {
                        <i className="fa fa-info-circle md-5"> For mpesa, eco-cash or cash on delivery use shopmo virtual card to checkout
                          
                        </i>
-                       <Cards
-                            cvc={data.cvc}
-                            expiry={'12/26'}
-                            name={user.name}
-                            number={virtualCards[Math.floor(Math.random() * virtualCards.length)]}
-                       />
+                       <div  className="col-md-offset-2 ">
+                            <Cards
+                                   
+                                    cvc={data.cvc}
+                                    expiry={'12/26'}
+                                    name={user.name}
+                                    number={virtualCards[Math.floor(Math.random() * virtualCards.length)]}
+                            />
+                       </div>
+                     
                         <div className="form-group">
                             <label htmlFor="card_num_field">Card Number</label>
                             <CardNumberElement

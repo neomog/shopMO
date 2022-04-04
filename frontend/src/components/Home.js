@@ -67,7 +67,7 @@ const Home = ({ match }) => {
 
     function setActiveBtn(){
         setActive(prevState =>{
-           return {isActive:true,...prevState}
+           return {isActive:!isActive,...prevState}
         })
         
     }
