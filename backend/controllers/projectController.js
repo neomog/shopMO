@@ -13,8 +13,11 @@ exports.createProject = catchAsyncErrors(async (req, res, next) => {
     try {
         await sendEmail({
             email: 'hello@cosmotech.agency',
-            subject: 'New Project Created',
-            message: `A new project has been created by ${req.body.name} at ${req.body.email} he needs ${req.body.description}`
+            subject: 'New Project Requested',
+            message: `A new project has been created by
+             ${req.body.name} \n
+             we can reach them at ${req.body.email} 
+             they need ${req.body.description} \n ====================\n they got our services from ${req.body.info}`
         });
         console.log('Email sent')
     } catch (err) {
