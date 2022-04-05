@@ -19,10 +19,10 @@ const projectSchema = new mongoose.Schema({
         required: [true, 'Please select  subject'],
         enum: {
             values: [
-               'website+search',
+               'web+search',
                 'social+media',
                 'email',
-                'other'
+                'others'
             ],
             message: 'Please select correct subject'
         }
