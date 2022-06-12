@@ -9,6 +9,8 @@
 
 # misc
 /backend/config/config.env
+/backend/app.js
+/backend/config/database.js
 /frontend/.env.local
 /frontend/.env.development.local
 /frontend/.env.test.local
